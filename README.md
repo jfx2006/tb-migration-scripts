@@ -11,8 +11,8 @@ strings, and a script to run the migrations.
     $ virtualenv venv
     $ source venv/bin/activate
     $ pip install mercurial python-hglib
-    # Get the fluent.migrate fork from (WHERE) and install
-    $ pip install "<path-to->/fluent-migration[hg]"
+    # Get the fluent.migrate fork from https://github.com/jfx2006/tb-fluent-migrate and install
+    $ pip install "<path-to->/tb-fluent-migrate[hg]"
     ```
 
 2. Clone the comm strings repos:
