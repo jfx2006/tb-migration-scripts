@@ -112,17 +112,18 @@ else
     locale_list=("${locale_code}")
 fi
 
+# Pull from hg server
+if [ "${pull_repository}" = true ]
+then
+    hg --cwd ${l10n_clones_path}/ pull -u -r default
+fi
+
 for locale in ${locale_list[@]}
 do
     # Remove trailing slash from $locale
     locale=${locale%/}
     echo "Locale: ${locale}"
 
-    # Pull from hg server
-    if [ "${pull_repository}" = true ]
-    then
-        hg --cwd ${l10n_clones_path}/${locale} pull -u -r default
-    fi
 
     if [ "${wet_run}" = true ]
     then
@@ -133,14 +134,14 @@ do
 
     # Run migration
     migrate-l10n \
-        --lang ${locale} \
+        --locale ${locale} \
         --reference-dir ${quarantine_path} \
-        --localization-dir ${l10n_clones_path}/${locale} \
+        --localization-dir ${l10n_clones_path} \
         ${dry} ${recipes_list}
-
-    # Push to hg server
-    if [ "${push_repository}" = true ]
-    then
-        hg --cwd ${l10n_clones_path}/${locale} push
-    fi
 done
+
+# Push to hg server
+if [ "${push_repository}" = true ]
+then
+    hg --cwd ${l10n_clones_path}/ push
+fi
