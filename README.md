@@ -1,6 +1,6 @@
-# Fluent Migrations
+# Thunderbird Fluent Migrations
 
-This repository stores a copy of each migration module created for Gecko
+This repository stores a copy of each migration module created for Comm
 strings, and a script to run the migrations.
 
 ## Set up the system
@@ -10,7 +10,9 @@ strings, and a script to run the migrations.
 ```bash
 $ virtualenv venv
 $ source venv/bin/activate
-$ pip install mercurial python-hglib fluent.migrate
+$ pip install mercurial python-hglib
+# Get the fluent.migrate fork from (WHERE) and install
+$ pip install "<path-to->/fluent-migration[hg]"
 ```
 
 2. Clone [gecko-strings-quarantine](https://hg.mozilla.org/users/axel_mozilla.com/gecko-strings-quarantine).
