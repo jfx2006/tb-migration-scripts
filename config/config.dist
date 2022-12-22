@@ -1,13 +1,16 @@
 # This config is imported in a bash script via source.
 
-# Path to folder including all l10n clones
-l10n_clones_path="/path/to/l10n-clones/"
+# Path to comm-l10n
+# https://hg.mozilla.org/projects/comm-l10n/
+l10n_clones_path="${root_path}/comm-l10n/"
 
-# Path to gecko-strings-quarantine clone
-# https://hg.mozilla.org/users/axel_mozilla.com/gecko-strings-quarantine
-quarantine_path="/path/to/quarantine-repo/"
+# Path to comm-strings-quarantine clone
+# https://hg.mozilla.org/projects/comm-strings-quarantine/
+quarantine_path="${root_path}/comm-strings-quarantine/"
 
 # Path to mercurial clone of mozilla-unified, only used for the cleanup
 # migrations script. Leave empty if not needed.
 # https://hg.mozilla.org/mozilla-unified/
-mozilla_unified_path="/path/to/mozilla-unified-repo/"
+# mozilla_unified_path="/path/to/mozilla-unified-repo/"
+
+export HGRCPATH=${root_path}/hgrc

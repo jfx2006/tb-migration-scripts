@@ -7,23 +7,23 @@ strings, and a script to run the migrations.
 
 1. Create a virtual environment and install dependencies:
 
-```bash
-$ virtualenv venv
-$ source venv/bin/activate
-$ pip install mercurial python-hglib
-# Get the fluent.migrate fork from (WHERE) and install
-$ pip install "<path-to->/fluent-migration[hg]"
-```
+    ```bash
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install mercurial python-hglib
+    # Get the fluent.migrate fork from (WHERE) and install
+    $ pip install "<path-to->/fluent-migration[hg]"
+    ```
 
-2. Clone [gecko-strings-quarantine](https://hg.mozilla.org/users/axel_mozilla.com/gecko-strings-quarantine).
+2. Clone the comm strings repos:
 
-3. Clone all l10n repositories on your system. You can use [these
-scripts](https://github.com/flodolo/scripts/tree/master/mozilla_l10n/clone_hgmo)
-to automate the process.
+    ```bash
+    $ ./scripts/get_repos.sh
+    ```
 
-4. Copy `config/config.dist` as `config`, and adapt the paths to your system.
+3. Copy `config/config.dist` as `config`, and adapt the paths to your system.
 
-5. Use `/scripts/migration.sh` to run the migration.
+4. Use `./scripts/migration.sh` to run the migration.
 
 ## Run migrations and organization of the recipes folder
 
@@ -32,13 +32,13 @@ In order to run a migration, recipes need to be stored directly in the
 with `bug_`, allowing to run multiple recipes in one execution.
 
 After running the migration on all l10n repositories, recipes need to be moved
-in one of the `fx` subfolders. For example, if the migration landed in Firefox
-77, recipes need to be moved to `fx77`. It’s then possible to use the utility
+in one of the `tb` subfolders. For example, if the migration landed in Thunderbird
+109, recipes need to be moved to `tb109`. ~~It’s then possible to use the utility
 script `cleanup_migrations.py` to list all recipes landed in a specific version
-of Firefox, and remove them from a local `mozilla-unified` clone.
+of Firefox, and remove them from a local `mozilla-unified` clone.~~
 
 The `no_train` folder is used for recipes that never landed in
-`mozilla-central`.
+`comm-central`.
 
 ## Command Line Options
 
