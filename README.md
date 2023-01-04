@@ -10,7 +10,7 @@ strings, and a script to run the migrations.
     ```bash
     $ virtualenv venv
     $ source venv/bin/activate
-    $ pip install mercurial python-hglib
+    $ pip install mercurial python-hglib tomlkit
     # Get the fluent.migrate fork from https://github.com/jfx2006/tb-fluent-migrate and install
     $ pip install "<path-to->/tb-fluent-migrate[hg]"
     ```
