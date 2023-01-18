@@ -33,9 +33,7 @@ with `bug_`, allowing to run multiple recipes in one execution.
 
 After running the migration on all l10n repositories, recipes need to be moved
 in one of the `tb` subfolders. For example, if the migration landed in Thunderbird
-109, recipes need to be moved to `tb109`. ~~It’s then possible to use the utility
-script `cleanup_migrations.py` to list all recipes landed in a specific version
-of Firefox, and remove them from a local `mozilla-unified` clone.~~
+109, recipes need to be moved to `tb109`.
 
 The `no_train` folder is used for recipes that never landed in
 `comm-central`.
