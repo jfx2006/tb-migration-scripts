@@ -24,7 +24,8 @@ def startswith_any(text, matches):
 
 
 def main():
-    with open("comm-strings-quarantine/_configs/mail.toml") as fp:
+    print(f"Updating {MAIL_TOML}")
+    with open(MAIL_TOML) as fp:
         doc = toml_load(fp)
 
     remove_paths = [
@@ -45,6 +46,8 @@ def main():
 
     with open(MAIL_TOML, "w") as fp:
         toml_dump(doc, fp)
+
+    print("Done!")
 
 
 if __name__ == "__main__":

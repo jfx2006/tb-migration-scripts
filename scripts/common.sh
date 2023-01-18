@@ -1,5 +1,10 @@
 #! /usr/bin/env bash
 
+script_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+root_path="$(dirname "${script_path}")"
+
+. "${script_path}/../config/config"
+
 function interrupt_code()
 # This code runs if user hits control-c
 {
@@ -10,8 +15,13 @@ function interrupt_code()
 # Trap keyboard interrupt (control-c)
 trap interrupt_code SIGINT
 
-script_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-root_path="$(dirname "${script_path}")"
+die() {
+  if [[ -n "$1" ]]; then
+    exit $1
+  fi
+  exit 1
+}
+
 
 hack_hgrc() {
   _rc="$1"
@@ -27,11 +37,14 @@ with open(file, "w") as fp:
 _EOF_
 }
 
+clone_repo() {
+  _url="$1"
+  _path="$2"
 
-# Pull from hg server
-hg --cwd ${root_path}/ clone https://hg.mozilla.org/projects/comm-strings-quarantine
-hack_hgrc "${root_path}/comm-strings-quarantine/.hg/hgrc"
-
-# Pull from hg server
-hg --cwd ${root_path}/ clone https://hg.mozilla.org/projects/comm-l10n
-hack_hgrc "${root_path}/comm-l10n/.hg/hgrc"
+  if [[ -d "${_path}" && -d "${_path}/.hg" ]]; then
+    hg -R "${_path}" pull -u
+  else
+    hg clone "${_url}" "${_path}"
+    hack_hgrc "${_path}/.hg/hgrc"
+  fi
+}
