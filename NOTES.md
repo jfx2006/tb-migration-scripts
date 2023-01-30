@@ -24,9 +24,14 @@ venv activate at /home/rob/moz/fluent/venv/bin
 
 - `./scripts/reset-repos.sh`
 - Stop sync in Pontoon
+- Monitor [Sync log](https://pontoon.mozilla.org/sync/log/)
 - `./scripts/quarantine-to-strings.sh`
     - push to comm-l10n to update en-US
-- `./scripts/migration.sh wet-run push`
+    - Monitor [Source Repo Update](https://hg.mozilla.org/users/m_owca.info/thunderbird/)
+      it updates every 10 minutes. Wait for it to see the new strings before pushing
+      the migrated strings.
+- `./scripts/migration.sh wet-run`
+  - When source strings have updated, push migrated strings
 - IF all went well (it should have) - enable Pontoon Sync again
 
 ## Problems?
