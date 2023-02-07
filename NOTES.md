@@ -22,7 +22,7 @@ venv activate at /home/rob/moz/fluent/venv/bin
 
 ## Run migrations for real
 
-- `./scripts/reset-repos.sh`
+- `./scripts/reset_repos.sh`
 - Stop sync in Pontoon
 - Monitor [Sync log](https://pontoon.mozilla.org/sync/log/)
 - `./scripts/quarantine-to-strings.sh`
