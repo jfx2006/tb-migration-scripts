@@ -138,6 +138,9 @@ do
         --reference-dir ${quarantine_path} \
         --localization-dir ${l10n_clones_path} \
         ${dry} ${recipes_list}
+
+    echo "============="
+    echo ""
 done
 
 # Push to hg server
