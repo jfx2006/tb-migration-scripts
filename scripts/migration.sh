@@ -133,7 +133,7 @@ do
     fi
 
     # Run migration
-    migrate-l10n \
+    migrate-l10n-tb \
         --locale ${locale} \
         --reference-dir ${quarantine_path} \
         --localization-dir ${l10n_clones_path} \
