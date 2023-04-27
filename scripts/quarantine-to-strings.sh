@@ -4,6 +4,22 @@ set -eE
 
 . ./scripts/common.sh
 
+which mach > /dev/null 2>&1 || error_die "'mach' not found. Is it in your path?"
+
+ACTIONS="$*"
+
+# shellcheck disable=SC2086
+mach tb-l10n-quarantine-to-strings -q "$QUARANTINE_PATH" -l "$STRINGS_PATH" $ACTIONS
+
+hack_hgrc "$STRINGS_PATH"/.hg/hgrc
+
+exit 0
+
+### Remainder of script is the original shell version of quarantine-to-strings
+### kept here for posterity.
+
+exit 1
+
 FILEMAP="/tmp/filemap.txt"
 SPLICEMAP="/tmp/splicemap.txt"
 

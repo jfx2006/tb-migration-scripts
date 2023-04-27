@@ -17,11 +17,15 @@ trap interrupt_code SIGINT
 
 die() {
   if [[ -n "$1" ]]; then
-    exit $1
+    exit "$1"
   fi
   exit 1
 }
 
+error_die() {
+  echo "$1"
+  die 1
+}
 
 hack_hgrc() {
   _rc="$1"
