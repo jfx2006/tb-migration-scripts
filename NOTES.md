@@ -30,6 +30,7 @@ python3 -m venv migrations_venv
 source ./migrations_venv/bin/activate
 # The quotes in the next line are important! 
 pip install "fluent.migrate[hg] @ git+https://github.com/jfx2006/tb-fluent-migrate"
+pip install tomlkit
 ```
 
 ## Testing
