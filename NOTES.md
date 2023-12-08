@@ -33,13 +33,18 @@ pip install "fluent.migrate[hg] @ git+https://github.com/jfx2006/tb-fluent-migra
 pip install tomlkit
 ```
 
+
+# Running migrations
+
+## Prep
+
+- Copy recipies from a comm-central checkout to the recipes directory:
+   `$ cp $topsrcdir/comm/python/l10n/tb_fluent_migrations/bug*.py recipes/`
+
 ## Testing
 
 - `./scripts/quarantine-to-strings.sh clean prep migrate`
-  - Make sure your migration_venv is not active -- It's not entirely clear how
-    mach handles that situation.
-
-- Activate your virtual environment from above.
+  - This script relies on a `mach` from you Thunderbird source checkout in $PATH.
 
 - Need to adjust the `comm-strings-quarantine/_configs/*toml` files to not import m-c resources
     - `./scripts/munge_configs.py`
@@ -57,13 +62,22 @@ pip install tomlkit
 - Monitor [Sync log](https://pontoon.mozilla.org/sync/log/)
 - `./scripts/quarantine-to-strings.sh clean prep migrate push`
     - This will push to comm-l10n to update en-US
-    - Monitor [Source Repo Update](https://hg.mozilla.org/users/m_owca.info/thunderbird/)
-      it updates every 10 minutes. Wait for it to see the new strings before pushing
-      the migrated strings.
 - `./scripts/migration.sh wet-run`
   - When source strings have updated, push migrated strings
   - `pushd comm-l10n; hg push -r .; popd`
+- Monitor [Source Repo Update](https://hg.mozilla.org/users/m_owca.info/thunderbird/)
+  it updates every 10 minutes. Wait for it to see the new strings before enabling
+  sync.
 - IF all went well (it should have) - enable Pontoon Sync again
+
+
+## Archive migrations
+
+- Move the copies in this repo into the appropriate subfolder of recipes for the
+  current milestone. Push to Github.
+- Move the copies in comm-central into the `completed` subdirectory of
+  `tb_fluent_migrations`.
+  Push with a "No bug" commit message and "DONTBUILD".
 
 ## Problems?
 
