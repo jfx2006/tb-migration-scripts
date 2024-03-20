@@ -8,4 +8,4 @@ compare-locales ${quarantine_path}/_configs/mail.toml ${l10n_clones_path} es-MX 
 ./scripts/migration.sh es-MX wet-run
 compare-locales ${quarantine_path}/_configs/mail.toml ${l10n_clones_path} es-MX > /tmp/a4.txt
 
-meld /tmp/b4.txt /tmp/a4.txt
+diffuse /tmp/b4.txt /tmp/a4.txt
