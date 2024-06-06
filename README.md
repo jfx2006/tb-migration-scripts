@@ -1,7 +1,7 @@
 # Thunderbird Fluent Migrations
 
-This repository stores a copy of each migration module created for Comm
-strings, and a script to run the migrations.
+This repository stores a copy of each migration module created for
+`comm-central`, and a script to run the migrations.
 
 ## Set up the system
 
@@ -15,11 +15,11 @@ strings, and a script to run the migrations.
     $ pip install "<path-to->/tb-fluent-migrate[hg]"
     ```
 
-2. Clone the comm strings repos:
+2. Clone [thunderbird-l10n-source](https://github.com/thunderbird/thunderbird-l10n-source)
+and switch to the `update` branch.
 
-    ```bash
-    $ ./scripts/get_repos.sh
-    ```
+3. Clone [thunderbird-l10n](https://github.com/thunderbird/thunderbird-l10n-source).
+
 
 3. Copy `config/config.dist` as `config`, and adapt the paths to your system.
 
@@ -57,5 +57,10 @@ For running migrations on all locales and push to repository, use:
 ```
 $ ./scripts/migration.sh wet-run push
 ```
+
+> [!CAUTION]
+> The script assumes your locale clone of `firefox-l10n` is already on the
+> correct branch, and that the value of `push.default` in Git's configuration
+> allows to push without an explicit remote or branch.
 
 Run `./scripts/migration.sh help` for help on all available command line options.

@@ -31,10 +31,10 @@ function echo_manual() {
     echo "To run only one locale, add the locale code as first parameter"
     echo "(e.g. 'migration.sh it' to run only Italian)."
     echo "---"
-    echo "To avoid pulling from repositories, add no-updates"
+    echo "To avoid pulling from repository, add no-updates"
     echo "(e.g. 'migration.sh no-updates' to run all locales without updates)."
     echo "---"
-    echo "To push to repositories, add push"
+    echo "To push to repository, add push"
     echo "(e.g. 'migration.sh push' to run all locales and push changes)."
     echo "---"
     echo "To commit changes, add wet-run"
@@ -103,7 +103,7 @@ do
 done
 echo
 
-cd ${l10n_clones_path}
+cd ${l10n_path}
 # Create the list of locales
 if [ "${all_locales}" = true ]
 then
@@ -112,18 +112,24 @@ else
     locale_list=("${locale_code}")
 fi
 
-# Pull from hg server
+# Pull git repository
 if [ "${pull_repository}" = true ]
 then
-    hg --cwd ${l10n_clones_path}/ pull -u -r default
+    git -C ${l10n_path} pull
 fi
 
 for locale in ${locale_list[@]}
 do
-    # Remove trailing slash from $locale
+    # Remove trailing slash from $locale and $l10n_path
     locale=${locale%/}
+    l10n_path=${l10n_path%/}
     echo "Locale: ${locale}"
 
+    # Pull from hg server
+    if [ "${pull_repository}" = true ]
+    then
+        hg --cwd ${l10n_clones_path}/${locale} pull -u -r default
+    fi
 
     if [ "${wet_run}" = true ]
     then
@@ -136,15 +142,12 @@ do
     migrate-l10n-tb \
         --locale ${locale} \
         --reference-dir ${quarantine_path} \
-        --localization-dir ${l10n_clones_path} \
+        --localization-dir ${l10n_path} \
         ${dry} ${recipes_list}
-
-    echo "============="
-    echo ""
 done
 
-# Push to hg server
+# Push git repository
 if [ "${push_repository}" = true ]
 then
-    hg --cwd ${l10n_clones_path}/ push
+    git -C ${l10n_path} push
 fi
