@@ -2,5 +2,5 @@ config/config
 *.pyc
 venv/
 
-comm-l10n
-comm-strings-quarantine
+thunderbird-l10
+thunderbird-l10n-source
