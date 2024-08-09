@@ -183,5 +183,10 @@ done
 # Push git repository
 if [ "${push_repository}" = true ]
 then
-    git -C ${l10n_path} push 2>/dev/null || git -C ${l10n_path} push --set-upstream origin ${branch_name}
+    if [ "${create_branch}" = true ]
+    then
+        git -C ${l10n_path} push --set-upstream origin ${branch_name}
+    else
+        git -C ${l10n_path} push
+    fi
 fi
