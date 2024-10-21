@@ -2,5 +2,7 @@ config/config
 *.pyc
 venv/
 
-thunderbird-l10
+thunderbird-l10n
 thunderbird-l10n-source
+
+.idea/

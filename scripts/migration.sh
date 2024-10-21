@@ -155,12 +155,6 @@ do
     l10n_path=${l10n_path%/}
     echo "Locale: ${locale}"
 
-    # Pull from hg server
-    if [ "${pull_repository}" = true ]
-    then
-        hg --cwd ${l10n_clones_path}/${locale} pull -u -r default
-    fi
-
     if [ "${wet_run}" = true ]
     then
         dry=""
@@ -174,9 +168,9 @@ do
 
     # Run migration
     migrate-l10n-tb \
-        --locale ${locale} \
+        --lang ${locale} \
         --reference-dir ${quarantine_path} \
-        --localization-dir ${l10n_path} \
+        --localization-dir ${l10n_path}/${locale} \
         ${dry} ${recipes_list}
 done
 
