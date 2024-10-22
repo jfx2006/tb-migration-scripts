@@ -56,7 +56,7 @@ pip install tomlkit
     - `./scripts/compare_locales_esMX.sh`
 
 - Check that all locales work -- **do not enable push**
-  `./scripts/migration.sh no-updates`
+  `./scripts/migration.sh wet-run`
 - Ensure there were no errors. Proceed only if there were no errors!
 
 
